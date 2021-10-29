@@ -12,7 +12,7 @@
           <input class="submit" type="submit" name="submit" value="Sign in">
           <br>
           <br>
-          <a class="submit" align="center" href="signup.php">Sign up</a>
+          <a class="submit" align="center" href="register.php">Sign up</a>
           <p class="forgot" align="center"><a href="#">Forgot Password?</p>
         </form>                
     </div>
