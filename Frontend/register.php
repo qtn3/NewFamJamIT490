@@ -1,11 +1,36 @@
 <?php
+session_start();
+require_once ('/home/qtn3/Documents/NewFamJamIT490/vendor/autoload.php');
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
+
+if(isset($_POST['submit'])){
+    //Connect to RabbitMQ
+    $connection = new AMQPStreamConnection('192.168.194.150', 5672, 'dp75', '1234', 'dp75');
+    $channel = $connection->channel();
+
+    //Publish Message
+    $channel->queue_declare('username queue', false, false, false, false);
+    $username= !empty($_POST['sign_up_name'])?trim($_POST['sign_up_name']):null;
+    $password= !empty($_POST['sign_up_pass'])?trim($_POST['sign_up_pass']):null;
+    $passwordHashed= password_hash($password, PASSWORD_BCRYPT);
+    $email= !empty($_POST['sign_up_email'])?trim($_POST['sign_up_email']):null;
+    $credential = array("username"=>$username, "password"=>$passwordHashed, "email"=>$email);
+    $msg = new AMQPMessage(json_encode($credential));
+    $channel->basic_publish($msg, '', 'username queue');
+
+    $channel->close();
+    $connection->close();
+}
+?>
+<?php
     require 'register_header.php';
 ?>
 <html>
 <body>
     <div class="main">
         <p class="sign" align="center">Sign up</p>
-        <form class="form1" action="/home/qtn3/Documents/NewFamJamIT490/Backend/registerProc.php" method="post">
+        <form class="form1" action="register.php" method="post">
           <input class="un " type="text" align="center" name="sign_up_name" placeholder="Username">
           <input class="pass" type="password" align="center" name="sign_up_pass" placeholder="Password">
           <input class="pass" type="email" align="center" name="sign_up_email" placeholder="Email">

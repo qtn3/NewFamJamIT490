@@ -1,4 +1,26 @@
 <?php
+session_start();
+require_once ('/home/qtn3/Desktop/FamJam4/vendor/autoload.php');
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
+
+
+if(isset($_POST['submit'])){
+  $connection = new AMQPStreamConnection('192.168.194.150', 5672, 'dp75', '1234', 'dp75');
+  $channel = $connection->channel();
+
+
+  $channel->queue_declare('username queue', false, false, false, false);
+  $username= !empty($_POST['user_name'])?trim($_POST['user_name']):null;
+  $password= !empty($_POST['pass_word'])?trim($_POST['pass_word']):null;
+  $credential = array("username"=>$username, "password"=>$password);
+  $msg = new AMQPMessage(json_encode($credential));
+  $channel->basic_publish($msg, '', 'username queue');
+  $channel->close();
+  $connection->close();
+}
+?>
+<?php
     require 'login_header.php';
 ?>
 <html>
