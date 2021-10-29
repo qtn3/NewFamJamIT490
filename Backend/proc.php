@@ -4,6 +4,8 @@ require_once ('/home/qtn3/Documents/NewFamJamIT490/vendor/autoload.php');
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
+    $connection = new AMQPStreamConnection('192.168.194.135', 5672, 'dp75', '1234', 'dp75');
+    $channel = $connection->channel();
 //Consume Message
 $channel->queue_declare('username queue', false, false, false, false);
 $callback = function($msg){
