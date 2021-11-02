@@ -12,14 +12,16 @@ $channel = $connection->channel();
 $channel->queue_declare('backend queue', false, false, false, false);
 $callback = function($msg){
     $creadUser=json_decode($msg->body,true);
-
+    //Access elements in the array 
     $creadUserName=$creadUser['username'];
     $creadUserPassword=$creadUser['password'];
     $creadUserEmail=$creadUser['email'];
+    //Using 'username' to search for the user in the database 
     $sqlQ = "Select * From users Where username='$creadUserName'";
     $prepare=$conn->query($sqlQ);
     
     if(count($creadUser)==3){ //login 
+        global $prepare, $channel, $conn;
         if($prepare>=1){ //user existed
             $state = 1; 
             $channel->queue_declare('database login queue', false, false, false, false);
@@ -36,6 +38,7 @@ $callback = function($msg){
         }
     }
     else{ //register
+        global $prepare, $channel, $conn;
         if($prepare>=1){ //user existed
             $state = 1; 
             $channel->queue_declare('database register queue', false, false, false, false);

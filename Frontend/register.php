@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once ('/home/qtn3/Documents/NewFamJamIT490/vendor/autoload.php');
+require_once ('/home/qtn3/Desktop/NewFamJamIT490/vendor/autoload.php');
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
@@ -9,6 +9,7 @@ $connection = new AMQPStreamConnection('192.168.194.241', 5672, 'dp75', '1234', 
 $channel = $connection->channel();
 
 if(isset($_POST['submit'])){
+    global $channel;
     //Publish Message to 'username queue'
     $channel->queue_declare('username queue', false, false, false, false);
     $username= !empty($_POST['sign_up_name'])?trim($_POST['sign_up_name']):null;

@@ -12,6 +12,7 @@ $channel->queue_declare('username queue', false, false, false, false);
 $callback = function($msg){
     $cread=json_decode($msg->body,true);
     if(count($cread) == 2){
+        global $channel;
         $state = 0; //login
         //Publish Message to 'backend queue'
         $channel->queue_declare('backend queue', false, false, false, false);
@@ -20,6 +21,7 @@ $callback = function($msg){
         $channel->basic_publish($msg, '', 'backend queue');
     }
     else{
+        global $channel;
         $state = 1; //register
         //Publish Message to 'backend queue'
         $channel->queue_declare('backend queue', false, false, false, false);
