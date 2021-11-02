@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once ('/home/qtn3/Desktop/FamJam4/vendor/autoload.php');
-require 'create_db.php';
+require 'create_table.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
@@ -13,10 +13,14 @@ $channel->queue_declare('backend queue', false, false, false, false);
 $callback = function($msg){
     $creadUser=json_decode($msg->body,true);
 
-    //plz write command to search database for user here
-
+    $creadUserName=$creadUser['username'];
+    $creadUserPassword=$creadUser['password'];
+    $creadUserEmail=$creadUser['email'];
+    $sqlQ = "Select * From users Where username='$creadUserName'";
+    $prepare=$conn->query($sqlQ);
+    
     if(count($creadUser)==3){ //login 
-        if(true){ //user existed
+        if($prepare>=1){ //user existed
             $state = 1; 
             $channel->queue_declare('database login queue', false, false, false, false);
             $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "state"=>$state);
@@ -32,7 +36,7 @@ $callback = function($msg){
         }
     }
     else{ //register
-        if(true){ //user existed
+        if($prepare>=1){ //user existed
             $state = 1; 
             $channel->queue_declare('database register queue', false, false, false, false);
             $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "email"=>$creadUser['email'], "state"=>$state);
@@ -41,13 +45,19 @@ $callback = function($msg){
         }
         else{ //user not existed
 
-            //PLZ PUT COMMAND TO INSERT USER TO THE DATABASE THEN ...
-
-            $state = 0; 
-            $channel->queue_declare('database register queue', false, false, false, false);
-            $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "email"=>$creadUser['email'], "state"=>$state);
-            $msg = new AMQPMessage(json_encode($credentialUser));
-            $channel->basic_publish($msg, '', 'database register queue');
+            $sql= "INSERT INTO users (username, password, email) VALUES ('$creadUserName', '$creadUserPassword', '$creadUserEmail')";
+            $prepare=$conn->query($sql);
+            if($prepare){
+                $state = 0; 
+                $channel->queue_declare('database register queue', false, false, false, false);
+                $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "email"=>$creadUser['email'], "state"=>$state);
+                $msg = new AMQPMessage(json_encode($credentialUser));
+                $channel->basic_publish($msg, '', 'database register queue');
+            }
+            else{
+                echo 'Insertion is not successful!';
+            }
+            
         }
     }
 };
