@@ -4,12 +4,12 @@ require_once ('/home/qtn3/Documents/NewFamJamIT490/vendor/autoload.php');
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-if(isset($_POST['submit'])){
-    //Connect to RabbitMQ
-    $connection = new AMQPStreamConnection('192.168.194.241', 5672, 'dp75', '1234', 'dp75');
-    $channel = $connection->channel();
+//Connect to RabbitMQ
+$connection = new AMQPStreamConnection('192.168.194.241', 5672, 'dp75', '1234', 'dp75');
+$channel = $connection->channel();
 
-    //Publish Message
+if(isset($_POST['submit'])){
+    //Publish Message to 'username queue'
     $channel->queue_declare('username queue', false, false, false, false);
     $username= !empty($_POST['sign_up_name'])?trim($_POST['sign_up_name']):null;
     $password= !empty($_POST['sign_up_pass'])?trim($_POST['sign_up_pass']):null;
@@ -18,10 +18,27 @@ if(isset($_POST['submit'])){
     $credential = array("username"=>$username, "password"=>$passwordHashed, "email"=>$email);
     $msg = new AMQPMessage(json_encode($credential));
     $channel->basic_publish($msg, '', 'username queue');
-
-    $channel->close();
-    $connection->close();
 }
+//Consume Message from 'database register queue'
+$channel->queue_declare('database register queue', false, false, false, false);
+$callback = function($msg){
+  $creadUser=json_decode($msg->body,true);
+  if($creadUser['state']==1){ //user existed register
+    echo 'Username is already existed!';
+  }
+  else{ //register is success redirecting user to home page
+    header('refresh:5,url: home.html');
+    die();
+  }
+};
+$channel->basic_consume('database register queue','',false,true,false,false,$callback);
+while($channel->is_consuming()){
+    $channel->wait();
+}
+
+$channel->close();
+$connection->close();
+
 ?>
 <?php
     require 'register_header.php';
