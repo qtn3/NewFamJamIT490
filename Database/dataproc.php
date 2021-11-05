@@ -20,9 +20,9 @@ $callback = function($msg){
     $sqlQ = "Select * From users Where username='$creadUserName'";
     $prepare=$conn->query($sqlQ);
     
-    if(count($creadUser)==3){ //login 
+    if(count($creadUser)==3){ //login username, password, state
         global $prepare, $channel, $conn;
-        if($prepare>=1){ //user existed
+        if($prepare){ //user existed
             $state = 1; 
             $channel->queue_declare('database login queue', false, false, false, false);
             $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "state"=>$state);
@@ -37,9 +37,9 @@ $callback = function($msg){
             $channel->basic_publish($msg, '', 'database login queue');
         }
     }
-    else{ //register
+    else{ //register username, password, email, state
         global $prepare, $channel, $conn;
-        if($prepare>=1){ //user existed
+        if($prepare){ //user existed
             $state = 1; 
             $channel->queue_declare('database register queue', false, false, false, false);
             $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "email"=>$creadUser['email'], "state"=>$state);

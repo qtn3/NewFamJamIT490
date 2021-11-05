@@ -17,10 +17,10 @@ if(isset($_POST['submit'])){
   $credential = array("username"=>$username, "password"=>$password);
   $msg = new AMQPMessage(json_encode($credential));
   $channel->basic_publish($msg, '', 'username queue');
-}
-//Consume Message from 'database login queue'
-$channel->queue_declare('database login queue', false, false, false, false);
-$callback = function($msg){
+
+  //Consume Message from 'database login queue'
+  $channel->queue_declare('database login queue', false, false, false, false);
+  $callback = function($msg){
   $creadUser=json_decode($msg->body,true);
   if($creadUser['state']==1){ //user existed login
     header('Location: home.html');
@@ -37,6 +37,7 @@ while($channel->is_consuming()){
 
 $channel->close();
 $connection->close();
+}
 ?>
 <?php
     require 'login_header.php';
