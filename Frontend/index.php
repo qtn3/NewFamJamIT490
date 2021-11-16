@@ -66,7 +66,7 @@
 										<img src="solid/dist/images/feature-icon-01.svg" alt="Feature 01">
                                     </div>
                                     <h4 class="feature-title mt-24">Ad-free</h4>
-                                    <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
+                                    <p class="text-sm mb-0">Listening to music without annoying pop ups and ads.</p>
                                 </div>
                             </div>
 							<div class="feature text-center is-revealing">
@@ -74,8 +74,8 @@
                                     <div class="feature-icon">
 										<img src="solid/dist/images/feature-icon-02.svg" alt="Feature 02">
                                     </div>
-                                    <h4 class="feature-title mt-24">No charge for the artist who wants to upload their song</h4>
-                                    <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
+                                    <h4 class="feature-title mt-24">Artist charge free</h4>
+                                    <p class="text-sm mb-0">No charge for the artist who wants to upload their song.</p>
                                 </div>
                             </div>
                             <div class="feature text-center is-revealing">
@@ -83,8 +83,8 @@
                                     <div class="feature-icon">
 										<img src="solid/dist/images/feature-icon-03.svg" alt="Feature 03">
                                     </div>
-                                    <h4 class="feature-title mt-24">Fewer subscription fees compared to others in the market.</h4>
-                                    <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
+                                    <h4 class="feature-title mt-24">Pay less</h4>
+                                    <p class="text-sm mb-0">Fewer subscription fees compared to others in the market.</p>
                                 </div>
                             </div>
                             <div class="feature text-center is-revealing">
@@ -92,8 +92,8 @@
                                     <div class="feature-icon">
 										<img src="solid/dist/images/feature-icon-04.svg" alt="Feature 04">
                                     </div>
-                                    <h4 class="feature-title mt-24">Subscribers can download songs so that they can listen to them offline</h4>
-                                    <p class="text-sm mb-0">Fermentum posuere urna nec tincidunt praesent semper feugiat nibh. A arcu cursus vitae congue mauris. Nam at lectus urna duis convallis. Mauris rhoncus aenean vel elit scelerisque mauris.</p>
+                                    <h4 class="feature-title mt-24">Offline Music Supported</h4>
+                                    <p class="text-sm mb-0">Subscribers can download songs so that they can listen to them offline.</p>
                                 </div>
                             </div>
                         </div>
@@ -106,28 +106,28 @@
                     <div class="pricing-inner section-inner">
                         <div class="pricing-header text-center">
                             <h2 class="section-title mt-0">Unlimited for all</h2>
-                            <p class="section-paragraph mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut ad quis nostrud.</p>
+                            <p class="section-paragraph mb-0">Listen without limits on your phone, speaker, and other devices.</p>
                         </div>
 						<div class="pricing-tables-wrap">
                             <div class="pricing-table">
                                 <div class="pricing-table-inner is-revealing">
                                     <div class="pricing-table-main">
                                         <div class="pricing-table-header pb-24">
-                                            <div class="pricing-table-price"><span class="pricing-table-price-currency h2">$</span><span class="pricing-table-price-amount h1">15</span><span class="text-xs">/month</span></div>
+                                            <div class="pricing-table-price"><span class="pricing-table-price-currency h2">$</span><span class="pricing-table-price-amount h1">8.99</span><span class="text-xs">/month</span></div>
                                         </div>
 										<div class="pricing-table-features-title text-xs pt-24 pb-24">What you will get</div>
                                         <ul class="pricing-table-features list-reset text-xs">
                                             <li>
-                                                <span>Lorem ipsum dolor sit nisi</span>
+                                                <span>Listen to music ad-free</span>
                                             </li>
                                             <li>
-                                                <span>Lorem ipsum dolor sit nisi</span>
+                                                <span>Play anywhere- even offline</span>
                                             </li>
                                             <li>
-                                                <span>Lorem ipsum dolor sit nisi</span>
+                                                <span>Access to premium songs</span>
                                             </li>
 											<li>
-												<span>Lorem ipsum dolor sit nisi</span>
+												<span>On-demand playback</span>
 											</li>
                                         </ul>
                                     </div>
