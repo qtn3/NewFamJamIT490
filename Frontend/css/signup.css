@@ -101,7 +101,7 @@ a {
 
 a:hover{
     text-decoration: none;
-    color: #8C55AA;
+    color: white;
 }
 
 @media (max-width: 600px) {
