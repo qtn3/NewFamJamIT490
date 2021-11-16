@@ -1,5 +1,5 @@
 body {
-    background-color: #F3EBF6;
+    background-color: #242830;
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -14,10 +14,10 @@ body {
 
 .sign {
     padding-top: 40px;
-    color: #8C55AA;
+    color: aqua;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
-    font-size: 23px;
+    font-size: 42px;
 }
 
 .un {
@@ -73,8 +73,9 @@ font-family: 'Ubuntu', sans-serif;
 .submit {
   cursor: pointer;
     border-radius: 5em;
-    color: #fff;
-    background: linear-gradient(to right, #9C27B0, #E040FB);
+    color: aqua;
+    /* background: linear-gradient(to right, #9C27B0, #E040FB); */
+    background-color: #696969;
     border: 0;
     padding-left: 40px;
     padding-right: 40px;
