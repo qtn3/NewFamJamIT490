@@ -5,7 +5,7 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 //Connect to RabbitMQ
-$connection = new AMQPStreamConnection('192.168.194.135', 5672, 'dp75', '1234', 'dp75');
+$connection = new AMQPStreamConnection('192.168.194.241', 5672, 'dp75', '1234', 'dp75');
 $channel = $connection->channel();
 //Consume Message from 'username queue'
 $channel->queue_declare('username queue', false, false, false, false);
@@ -19,6 +19,7 @@ $callback = function($msg){
         $credential = array("username"=>$cread['username'], "password"=>$cread['password'], "state"=>$state);
         $msg = new AMQPMessage(json_encode($credential));
         $channel->basic_publish($msg, '', 'backend queue');
+        $channel->queue_delete('username queue');//delete username queue
     }
     else{
         global $channel;
@@ -28,6 +29,7 @@ $callback = function($msg){
         $credential = array("username"=>$cread['username'], "password"=>$cread['password'], "email"=>$cread['email'], "state"=>$state);
         $msg = new AMQPMessage(json_encode($credential));
         $channel->basic_publish($msg, '', 'backend queue');
+        $channel->queue_delete('username queue');
     }
 };
 $channel->basic_consume('username queue','',false,true,false,false,$callback);

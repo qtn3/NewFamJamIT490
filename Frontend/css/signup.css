@@ -1,5 +1,9 @@
 body {
-    background-color: #242830;
+    background-image: url("../img/lwfQm84.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: #242830; */
     font-family: 'Ubuntu', sans-serif;
 }
 

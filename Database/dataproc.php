@@ -28,6 +28,7 @@ $callback = function($msg){
             $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "state"=>$state);
             $msg = new AMQPMessage(json_encode($credentialUser));
             $channel->basic_publish($msg, '', 'database login queue');
+            $channel->queue_delete('backend queue');// delete backend queue
         }
         else{ //user not existed
             $state = 0; 
@@ -35,6 +36,7 @@ $callback = function($msg){
             $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "state"=>$state);
             $msg = new AMQPMessage(json_encode($credentialUser));
             $channel->basic_publish($msg, '', 'database login queue');
+            $channel->queue_delete('backend queue');
         }
     }
     else{ //register username, password, email, state
@@ -45,6 +47,7 @@ $callback = function($msg){
             $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "email"=>$creadUser['email'], "state"=>$state);
             $msg = new AMQPMessage(json_encode($credentialUser));
             $channel->basic_publish($msg, '', 'database register queue');
+            $channel->queue_delete('backend queue');
         }
         else{ //user not existed
 
@@ -56,6 +59,7 @@ $callback = function($msg){
                 $credentialUser = array("username"=>$creadUser['username'], "password"=>$creadUser['password'], "email"=>$creadUser['email'], "state"=>$state);
                 $msg = new AMQPMessage(json_encode($credentialUser));
                 $channel->basic_publish($msg, '', 'database register queue');
+                $channel->queue_delete('backend queue');
             }
             else{
                 echo 'Insertion is not successful!';

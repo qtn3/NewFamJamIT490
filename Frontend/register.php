@@ -9,7 +9,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 if(isset($_POST['submit'])){
     global $channel;
-    $connection = new AMQPStreamConnection('192.168.194.150', 5672, 'dp75', '1234', 'dp75');
+    $connection = new AMQPStreamConnection('192.168.194.241', 5672, 'dp75', '1234', 'dp75');
     $channel = $connection->channel();
     //Publish Message to 'username queue'
     $channel->queue_declare('username queue', false, false, false, false);
@@ -26,10 +26,13 @@ if(isset($_POST['submit'])){
     $callback = function($msg){
     $creadUser=json_decode($msg->body,true);
     if($creadUser['state']==1){ //user existed register
+      global $channel;
       echo 'Username is already existed!';
+      $channel->queue_delete('database register queue');//delete database register queue
     }
     else{ //register is success redirecting user to home page
       header('refresh:5,url: home.html');
+      $channel->queue_delete('database register queue');
       die();
     }
   };
