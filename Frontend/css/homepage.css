@@ -1,0 +1,16 @@
+body{
+    background-color: lightblue;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+.navbar-brand{
+    color: lightblue !important;
+    font-weight: 600 !important;
+}
+.carousel-inner>.carousel-item>img{
+    display: block;
+    height: 500px;
+    max-width: 100%;
+    line-height: 1;
+    width: 100%;
+}

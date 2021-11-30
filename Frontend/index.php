@@ -35,7 +35,7 @@
 						<div class="hero-copy">
 	                        <h1 class="hero-title mt-0">Feel the Beat</h1>
 	                        <p class="hero-paragraph">Digital music and podcasting service software that allows you to access millions of songs and other related content from across the worldsss.</p>
-	                        <div class="hero-cta"><a class="button button-primary" href="#">About Us</a><a class="button" href="register.php">Sign Up</a></div>
+	                        <div class="hero-cta"><a class="button button-primary" href="aboutus.php">About Us</a><a class="button" href="register.php">Sign Up</a></div>
 						</div>
 						<div class="hero-figure anime-element">
 							<svg class="placeholder" width="528" height="396" viewBox="0 0 528 396">

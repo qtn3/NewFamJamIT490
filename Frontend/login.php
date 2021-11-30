@@ -5,7 +5,7 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 //Connect to RabbitMQ
-$connection = new AMQPStreamConnection('192.168.194.135', 5672, 'dp75', '1234', 'dp75');
+$connection = new AMQPStreamConnection('192.168.194.241', 5672, 'dp75', '1234', 'dp75');
 $channel = $connection->channel();
 
 if(isset($_POST['submit'])){

@@ -25,14 +25,13 @@ if(isset($_POST['submit'])){
     $channel->queue_declare('database register queue', false, false, false, false);
     $callback = function($msg){
     $creadUser=json_decode($msg->body,true);
+    echo $creadUser['state'];
     if($creadUser['state']==1){ //user existed register
       global $channel;
       echo 'Username is already existed!';
-      $channel->queue_delete('database register queue');//delete database register queue
     }
     else{ //register is success redirecting user to home page
-      header('refresh:5,url: home.html');
-      $channel->queue_delete('database register queue');
+      header('refresh:5,url: home.php');
       die();
     }
   };

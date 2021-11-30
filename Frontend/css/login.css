@@ -14,7 +14,7 @@ body {
 
 .sign {
     padding-top: 40px;
-    color: aqua;
+    color: lightblue;
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     font-size: 42px;
@@ -45,7 +45,7 @@ form.form1 {
 }
 
 .pass {
-        width: 76%;
+width: 76%;
 color: rgb(38, 50, 56);
 font-weight: 700;
 font-size: 14px;
@@ -73,7 +73,7 @@ font-family: 'Ubuntu', sans-serif;
 .submit {
   cursor: pointer;
     border-radius: 5em;
-    color: aqua;
+    color: lightblue;
     /* background: linear-gradient(to right, #9C27B0, #E040FB); */
     background-color: #696969;
     border: 0;
