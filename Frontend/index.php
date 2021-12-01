@@ -132,7 +132,7 @@
                                         </ul>
                                     </div>
                                     <div class="pricing-table-cta mb-8">
-                                        <a class="button button-primary button-shadow button-block" href="#">Purchase now</a>
+                                        <a class="button button-primary button-shadow button-block" href="checkout.php">Purchase now</a>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
                             <a href="#">Contact</a>
                         </li>
                         <li>
-                            <a href="#">About us</a>
+                            <a href="aboutus.php">About us</a>
                         </li>
                         <li>
                             <a href="#">FAQ's</a>
