@@ -5,11 +5,12 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 //Connect to RabbitMQ
-$connection = new AMQPStreamConnection('192.168.194.241', 5672, 'dp75', '1234', 'dp75');
-$channel = $connection->channel();
+
 
 if(isset($_POST['submit'])){
   global $channel;
+  $connection = new AMQPStreamConnection('192.168.194.241', 5672, 'dp75', '1234', 'dp75');
+  $channel = $connection->channel();
   //Publish Message to 'username queue'
   $channel->queue_declare('username queue', false, false, false, false);
   $username= !empty($_POST['user_name'])?trim($_POST['user_name']):null;
